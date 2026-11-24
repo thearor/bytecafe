@@ -1,0 +1,18 @@
+/* Part 2 – Selector Gym – ANSWER KEY
+   (Each answer is active here at once, for reference only.
+    Students should test them one at a time.) */
+
+/* S1  */ p                     { background-color: yellow; }   /* P1–P6 + the instruction paragraph */
+/* S2  */ .intro                { background-color: yellow; }   /* P1, P3 */
+/* S3  */ .intro.highlight      { background-color: yellow; }   /* P3 (no space between classes!) */
+/* S4  */ #special              { background-color: yellow; }   /* P6 */
+/* S5  */ li.highlight          { background-color: yellow; }   /* L2 */
+/* S6  */ li li                 { background-color: yellow; }   /* L3a  (also: ul ul li) */
+/* S7  */ h2 + p                { background-color: yellow; }   /* P1, P4 */
+/* S8  */ h2 ~ p                { background-color: yellow; }   /* P1–P6: ~ matches ALL later siblings of ANY h2 */
+/* S9  */ a[href^="https"]      { background-color: yellow; }   /* A1 */
+/* S10 */ a[href$=".pdf"]       { background-color: yellow; }   /* A3 */
+/* S11 */ input[type="email"]   { background-color: yellow; }   /* I2 */
+/* S12 */ input:disabled        { background-color: yellow; }   /* I3 */
+/* S13 */ li:first-child        { background-color: yellow; }   /* L1, L3a */
+/* S14 */ h2, #special          { background-color: yellow; }   /* both h2s + P6 */

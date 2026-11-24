@@ -1,0 +1,407 @@
+/* =====================================================================
+   The Byte Café – REFERENCE SOLUTION (instructor copy)
+   Organised by lab part so it can be compared with student work.
+   ===================================================================== */
+
+/* ---------- PART 4: Custom properties (design tokens) ---------- */
+:root {
+  --brown: #6b3e26;            /* hex            */
+  --brown-dark: #4a2a19;
+  --cream: rgb(253 246 236);   /* modern rgb()   */
+  --gold: hsl(42 86% 63%);     /* hsl()          */
+  --text: #2b2b2b;
+  --muted: #6c6c6c;
+  --radius: 10px;
+}
+
+/* ---------- PART 5: Box model reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ---------- PART 4: Typography & colour ---------- */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;           /* 16px by default        */
+  line-height: 1.6;          /* unitless = scales      */
+  color: var(--text);
+  background-color: var(--cream);
+}
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.2;
+  color: var(--brown);
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 0;
+}
+
+h2::after {                   /* pseudo-element: decorative underline */
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 0.5rem auto 0;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Links: order L-V-H-F-A ("LoVe HAte") */
+a:link    { color: var(--brown); }
+a:visited { color: var(--brown-dark); }
+a:hover   { color: #b5651d; }
+a:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+a:active  { color: #8b0000; }
+
+/* ---------- PART 7 & 9: Header – flexbox + sticky positioning ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.75rem 2rem;
+  background-color: var(--brown);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.site-header a:link,
+.site-header a:visited {
+  color: #fff;
+}
+
+/* ---------- PART 6 & 7: Navigation list ---------- */
+.nav-list {
+  list-style-type: none;     /* remove bullets */
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+  display: block;            /* make the whole area clickable */
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.nav-list a:hover {
+  background-color: var(--gold);
+  color: var(--brown-dark);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 5rem 1.5rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brown) 0%, #b5651d 100%);
+}
+
+.hero h1 {
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  margin: 0 0 1rem;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  max-width: 40ch;
+  margin: 0 auto 2rem;
+}
+
+/* Buttons – class selectors combined */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary,
+.hero .btn-primary:link,
+.hero .btn-primary:visited {
+  background-color: var(--gold);
+  color: var(--brown-dark);
+}
+
+.btn-primary:hover {
+  background-color: #fff;
+}
+
+/* ---------- Main sections (box model) ---------- */
+main > section {             /* child combinator */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+/* ---------- PART 8: Cards – grid ---------- */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---------- PART 5 & 9: Card box model + absolute badge ---------- */
+.card {
+  position: relative;        /* containing block for the badge */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 1.25rem;
+  background-color: #fff;
+  border: 1px solid #e8dccd;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(107, 62, 38, 0.12);
+}
+
+.card img {
+  border-radius: calc(var(--radius) - 4px);
+  margin-bottom: 0.75rem;
+}
+
+.card h3 {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.card .price {
+  margin-top: auto;          /* push price to bottom of card */
+  margin-bottom: 0;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--brown);
+}
+
+.badge {
+  position: absolute;
+  top: -0.6rem;
+  right: -0.6rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #c0392b;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  transform: rotate(8deg);
+}
+
+/* ---------- PART 6: Table ---------- */
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(107, 62, 38, 0.12);
+}
+
+.menu-table caption {
+  caption-side: bottom;
+  padding-top: 0.5rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.menu-table th,
+.menu-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.menu-table th {
+  background-color: var(--brown);
+  color: #fff;
+}
+
+.menu-table tbody tr:nth-child(even) {
+  background-color: #faf1e6;
+}
+
+.menu-table tbody tr:hover {
+  background-color: #f4dfc4;
+}
+
+.menu-table td:first-child {
+  font-weight: 600;
+}
+
+.menu-table td:last-child,
+.menu-table th:last-child {
+  text-align: right;
+}
+
+/* ---------- PART 6: Lists ---------- */
+.event-list {
+  list-style-type: upper-roman;
+  padding-left: 2.5rem;
+}
+
+.event-list li {
+  margin-bottom: 0.5rem;
+}
+
+.event-list li::marker {
+  color: var(--brown);
+  font-weight: 700;
+}
+
+.tag {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  border: 1px solid var(--brown);
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.feature-list {
+  list-style-type: square;
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+/* Adjacent sibling combinator: first <li> after another <li> gets a divider */
+.feature-list li + li {
+  border-top: 1px dashed #d9c3aa;
+  padding-top: 0.3rem;
+}
+
+/* ---------- PART 8: Form – grid ---------- */
+.booking-form {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(107, 62, 38, 0.12);
+}
+
+.booking-form label {
+  grid-column: 1 / 2;
+  text-align: right;
+  font-weight: 600;
+}
+
+.booking-form input,
+.booking-form textarea,
+.booking-form button {
+  grid-column: 2 / 3;
+}
+
+.booking-form input,
+.booking-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  font: inherit;
+  border: 1px solid #c9b8a6;
+  border-radius: 6px;
+}
+
+/* Attribute selector */
+.booking-form input[type="email"] {
+  background-color: #fffdf8;
+}
+
+/* Pseudo-classes for form state */
+.booking-form input:focus,
+.booking-form textarea:focus {
+  outline: 3px solid var(--gold);
+  border-color: var(--brown);
+}
+
+.booking-form input:user-invalid {   /* only after the user has interacted */
+  border-color: #c0392b;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: var(--brown-dark);
+  color: #f3e6d6;
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  margin: 0.25rem 0;
+}
+
+/* ---------- PART 10: Responsive design (mobile adjustments) ---------- */
+@media (max-width: 640px) {
+  .site-header {
+    position: static;        /* sticky header takes too much room on phones */
+    flex-direction: column;
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+  }
+
+  .booking-form {
+    grid-template-columns: 1fr;   /* single column */
+    padding: 1.25rem;
+  }
+
+  .booking-form label,
+  .booking-form input,
+  .booking-form textarea,
+  .booking-form button {
+    grid-column: 1;
+  }
+
+  .booking-form label {
+    text-align: left;
+  }
+
+  .menu-table th:nth-child(2),
+  .menu-table td:nth-child(2) {
+    display: none;              /* hide Description column on small screens */
+  }
+}
